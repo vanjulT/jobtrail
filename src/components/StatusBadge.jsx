@@ -8,8 +8,11 @@ const colours = {
 }
 
 function StatusBadge({ status }) {
+  const dotClass = status === "Interview" ? "pulse-dot" : ""
+
   return (
-    <Badge variant="outline" className={`border-transparent ${colours[status]}`}>
+    <Badge variant="outline" className={`gap-1.5 border-transparent ${colours[status]}`}>
+      <span className={`h-1.5 w-1.5 rounded-full bg-current ${dotClass}`} />
       {status}
     </Badge>
   )
