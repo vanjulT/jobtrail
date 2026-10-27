@@ -14,7 +14,13 @@ function JobCard({ job, isSaved, onSave }) {
       <CardContent className="grid gap-3">
         <div className="flex flex-wrap gap-2">
           <Badge variant="outline">{job.job_type.replace("_", " ")}</Badge>
-          <Badge variant="outline">{job.candidate_required_location}</Badge>
+          {/* long lists of countries must wrap instead of leaving the card */}
+          <Badge
+            variant="outline"
+            className="h-auto max-w-full whitespace-normal py-0.5 text-left"
+          >
+            {job.candidate_required_location}
+          </Badge>
           {job.salary && <Badge variant="outline">{job.salary}</Badge>}
         </div>
 
