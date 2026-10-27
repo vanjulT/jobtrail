@@ -2,6 +2,7 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/geist";
+@import "@fontsource-variable/unbounded";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -22,6 +23,7 @@
 @theme inline {
   --font-heading: var(--font-sans);
   --font-sans: 'Geist Variable', sans-serif;
+  --font-display: 'Unbounded Variable', sans-serif;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -63,30 +65,30 @@
 }
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  --background: #eef7f5;
+  --foreground: #16302d;
+  --card: rgb(255 255 255 / 0.62);
+  --card-foreground: #16302d;
+  --popover: #ffffff;
+  --popover-foreground: #16302d;
+  --primary: #2b6f68;
+  --primary-foreground: #ffffff;
+  --secondary: #e0f0ec;
+  --secondary-foreground: #16302d;
+  --muted: #e0f0ec;
+  --muted-foreground: #4f6b67;
+  --accent: #e0f0ec;
+  --accent-foreground: #16302d;
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --border: #cfe5e0;
+  --input: #b9d6d0;
+  --ring: #6fada3;
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
+  --radius: 0.9rem;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);
@@ -140,5 +142,65 @@
   }
   html {
     @apply font-sans;
+  }
+  h1,
+  h2,
+  [data-slot="card-title"] {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+}
+
+/* The opal glow: four soft colours that drift slowly behind the whole app */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(40rem 30rem at 12% 8%, rgb(120 220 200 / 0.45), transparent 60%),
+    radial-gradient(36rem 28rem at 88% 12%, rgb(170 160 255 / 0.35), transparent 60%),
+    radial-gradient(40rem 30rem at 70% 95%, rgb(255 170 200 / 0.3), transparent 60%),
+    radial-gradient(34rem 26rem at 5% 90%, rgb(140 200 255 / 0.35), transparent 60%);
+  background-repeat: no-repeat;
+  animation: opal-drift 28s ease-in-out infinite alternate;
+}
+
+@keyframes opal-drift {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(-3%, 2%, 0) scale(1.08);
+  }
+}
+
+/* Glass cards: they blur whatever glow is behind them */
+[data-slot="card"] {
+  backdrop-filter: blur(14px);
+  box-shadow: 0 10px 30px -14px rgb(30 80 75 / 0.25);
+}
+
+/* The shimmering logo text */
+.opal-sheen {
+  background: linear-gradient(100deg, #1f7a70, #3a6fd8, #8a5ad8, #1f7a70);
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: opal-sheen 10s linear infinite;
+}
+
+@keyframes opal-sheen {
+  to {
+    background-position: 250% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::before,
+  .opal-sheen {
+    animation: none;
   }
 }

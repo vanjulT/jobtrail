@@ -1,11 +1,14 @@
-import { Outlet } from "react-router-dom"
+import { Outlet, useLocation } from "react-router-dom"
 import Navbar from "@/components/Navbar"
 
 function Layout() {
+  const location = useLocation()
+
   return (
-    <div className="min-h-screen bg-opal-50">
+    <div className="min-h-screen">
       <Navbar />
-      <main className="mx-auto max-w-5xl px-4 py-8">
+      {/* the key changes with the address, so the fade starts again on each page */}
+      <main key={location.pathname} className="page-fade mx-auto max-w-5xl px-4 pb-16 pt-8">
         <Outlet />
       </main>
     </div>
