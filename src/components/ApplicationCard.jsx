@@ -14,7 +14,12 @@ function ApplicationCard({ application, onStatusChange, onDelete }) {
         <div className="flex items-start justify-between gap-2">
           <div>
             <CardTitle className="text-lg text-opal-800">
-              {application.company}
+              <Link
+                to={`/applications/${application.id}`}
+                className="hover:underline"
+              >
+                {application.company}
+              </Link>
             </CardTitle>
             <p className="text-sm text-slate-600">{application.role}</p>
           </div>

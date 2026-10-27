@@ -3,6 +3,7 @@ import Layout from "@/components/Layout"
 import DashboardPage from "@/pages/DashboardPage"
 import ApplicationsPage from "@/pages/ApplicationsPage"
 import ApplicationFormPage from "@/pages/ApplicationFormPage"
+import ApplicationDetailPage from "@/pages/ApplicationDetailPage"
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Route path="/" element={<DashboardPage />} />
         <Route path="/applications" element={<ApplicationsPage />} />
         <Route path="/applications/new" element={<ApplicationFormPage />} />
+        <Route path="/applications/:id" element={<ApplicationDetailPage />} />
         <Route path="/applications/:id/edit" element={<ApplicationFormPage />} />
       </Route>
     </Routes>
