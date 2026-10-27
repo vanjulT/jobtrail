@@ -6,6 +6,7 @@ import DashboardPage from "@/pages/DashboardPage"
 import ApplicationsPage from "@/pages/ApplicationsPage"
 import ApplicationFormPage from "@/pages/ApplicationFormPage"
 import ApplicationDetailPage from "@/pages/ApplicationDetailPage"
+import ExploreJobsPage from "@/pages/ExploreJobsPage"
 import LoginPage from "@/pages/LoginPage"
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route path="/applications/new" element={<ApplicationFormPage />} />
           <Route path="/applications/:id" element={<ApplicationDetailPage />} />
           <Route path="/applications/:id/edit" element={<ApplicationFormPage />} />
+          <Route path="/explore" element={<ExploreJobsPage />} />
         </Route>
 
         <Route

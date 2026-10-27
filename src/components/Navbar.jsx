@@ -5,6 +5,7 @@ import { useAuth } from "@/context/AuthContext"
 const links = [
   { to: "/", label: "Dashboard" },
   { to: "/applications", label: "Applications" },
+  { to: "/explore", label: "Explore Jobs" },
 ]
 
 function Navbar() {
@@ -17,7 +18,7 @@ function Navbar() {
 
         {isLoggedIn && (
           <div className="flex flex-wrap items-center gap-4">
-            <ul className="flex gap-4">
+            <ul className="flex flex-wrap gap-4">
               {links.map((link) => (
                 <li key={link.to}>
                   <NavLink
