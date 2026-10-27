@@ -5,11 +5,12 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { STATUSES } from "@/lib/constants"
 import { formatDate } from "@/lib/formatDate"
 
-function ApplicationCard({ application, onStatusChange, onDelete }) {
+function ApplicationCard({ application, onStatusChange, onDelete, index = 0 }) {
   const statusId = `status-${application.id}`
 
   return (
-    <Card>
+    // the delay grows with the position, but stops growing after 8 cards
+    <Card className="rise lift" style={{ "--i": Math.min(index, 8) }}>
       <CardHeader>
         <div className="flex items-start justify-between gap-2">
           <div>

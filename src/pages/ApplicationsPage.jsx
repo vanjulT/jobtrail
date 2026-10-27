@@ -45,7 +45,7 @@ function ApplicationsPage() {
   return (
     <div>
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h1 className="text-2xl font-bold text-opal-800">Applications</h1>
+        <h1 className="text-2xl text-opal-800">Applications</h1>
         <Link to="/applications/new" className={buttonVariants()}>
           Add application
         </Link>
@@ -85,10 +85,11 @@ function ApplicationsPage() {
               />
             ) : (
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {visibleApplications.map((application) => (
+                {visibleApplications.map((application, index) => (
                   <ApplicationCard
                     key={application.id}
                     application={application}
+                    index={index}
                     onStatusChange={handleStatusChange}
                     onDelete={handleDelete}
                   />

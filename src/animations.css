@@ -1,0 +1,109 @@
+/* Things rise into place. --i is the position in a list (0, 1, 2...),
+   so each item starts a little later than the one before it. */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.rise {
+  animation: rise 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+  animation-delay: calc(var(--i, 0) * 70ms);
+}
+
+/* Simple fade used when the whole page changes */
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.page-fade {
+  animation: fade 0.35s ease-out backwards;
+}
+
+/* Cards that lift and glow when the mouse is over them */
+.lift {
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.lift:hover {
+  transform: translateY(-5px);
+  box-shadow:
+    0 20px 40px -16px rgb(30 80 75 / 0.45),
+    0 0 0 1px rgb(255 255 255 / 0.9),
+    0 0 30px rgb(140 200 255 / 0.4);
+}
+
+/* Bars that grow from the left */
+@keyframes grow-x {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.grow-bar {
+  transform-origin: left;
+  animation: grow-x 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+  animation-delay: calc(0.5s + var(--i, 0) * 120ms);
+}
+
+/* A soft ring that keeps pulsing, to show something is "live" */
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 currentColor;
+  }
+  70%,
+  100% {
+    box-shadow: 0 0 0 6px transparent;
+  }
+}
+
+.pulse-dot {
+  animation: pulse-ring 2s ease-out infinite;
+}
+
+/* Buttons rise a little on hover and sink when pressed */
+[data-slot="button"] {
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.2s ease;
+}
+
+[data-slot="button"]:not(:disabled):hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px -8px rgb(43 111 104 / 0.65);
+}
+
+[data-slot="button"]:not(:disabled):active {
+  transform: scale(0.96);
+}
+
+/* Respect people who ask their computer for less motion */
+@media (prefers-reduced-motion: reduce) {
+  .rise,
+  .page-fade,
+  .grow-bar,
+  .pulse-dot {
+    animation: none;
+  }
+
+  .lift:hover,
+  [data-slot="button"]:not(:disabled):hover,
+  [data-slot="button"]:not(:disabled):active {
+    transform: none;
+  }
+}

@@ -5,7 +5,7 @@ import { formatDate } from "@/lib/formatDate"
 
 function JobCard({ job, isSaved, onSave }) {
   return (
-    <Card>
+    <Card className="rise lift">
       <CardHeader>
         <CardTitle className="text-base text-opal-800">{job.title}</CardTitle>
         <p className="text-sm text-slate-600">{job.company_name}</p>
